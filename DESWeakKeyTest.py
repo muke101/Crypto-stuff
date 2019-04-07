@@ -21,9 +21,8 @@ def formatter(data):
 	    character.append(chr(i))
 	print(''.join(character))
 
-
 weakKeys = [b'\xff',b'\x00',b'\x01',b'\x10',b'\xE1',b'\x1E',b'\xFE',b'\xEF']
-semiWeakKeys = [(b'\x011F011F010E010E',b'\x1F011F010E010E01'), (b'\x01E001E001F101F1',b'\xE001E001F101F101'), (b'\x01FE01FE01FE01FE',b'\xFE01FE01FE01FE01'), (b'\x1FE01FE00EF10EF1',b'\xE01FE01FF10EF10E'), (b'\x1FFE1FFE0EFE0EFE',b'\xFE1FFE1FFE0EFE0E'), (b'\xE0FEE0FEF1FEF1FE',b'\xFEE0FEE0FEF1FEF1')]
+semiWeakKeys = [(b'\x01\x1F\x01\x1F\x01\x0E\x01\x0E',b'\x1F\x01\x1F\x01\x0E\x01\x0E\x01'), (b'\x01\xE0\x01\xE0\x01\xF1\x01\xF1',b'\xE0\x01\xE0\x01\xF1\x01\xF1\x01'), (b'\x01\xFE\x01\xFE\x01\xFE\x01\xFE',b'\xFE\x01\xFE\x01\xFE\x01\xFE\x01'), (b'\x1F\xE0\x1F\xE0\x0E\xF1\x0E\xF1',b'\xE0\x1F\xE0\x1F\xF1\x0E\xF1\x0E'), (b'\x1F\xFE\x1F\xFE\x0E\xFE\x0E\xFE',b'\xFE\x1F\xFE\x1F\xFE\x0E\xFE\x0E'), (b'\xE0\xFE\xE0\xFE\xF1\xFE\xF1\xFE',b'\xFE\xE0\xFE\xE0\xFE\xF1\xFE\xF1')]
 
 for key in weakKeys:
 	data = open('keys.txt', 'rb')
@@ -31,4 +30,4 @@ for key in weakKeys:
 
 for key1, key2 in semiWeakKeys:
 	data = open('keys.txt', 'rb')
-	formatter(decrypt(key1, decrypt(key2, data)))
+	formatter(decrypt(bytes(key1), decrypt(bytes(key2), data)))
