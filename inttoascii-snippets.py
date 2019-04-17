@@ -12,7 +12,15 @@ for i in digits:
     character.append(chr(i))
 print(''.join(character))
 
-#bitwise one liners that do the same as I2OSP and it's reverse:
+#OS2IP
+xLen = len(X)
+X = X[::-1]
+x = 0
+for i in range(xLen):
+    x += X[i] * 256^i
+return x
+
+#bitwise one liners that do the same as I2OSP and OS2IIP:
 #num2bytes
 bytes(data >> (8 * i) & 0xff for i in range(size))
 #bytes2num
